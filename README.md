@@ -1,9 +1,5 @@
 CRIBS Core integration/staging repository
 =====================================
-[![master Actions Status](https://github.com/PIVX-Project/PIVX/workflows/CI%20Actions%20for%20PIVX/badge.svg)](https://github.com/PIVX-Project/PIVX/actions)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/PIVX-Project/pivx?color=%235c4b7d&cacheSeconds=3600)](https://github.com/PIVX-Project/PIVX/releases)
-[![GitHub Release Date](https://img.shields.io/github/release-date/PIVX-Project/pivx?color=%235c4b7d&cacheSeconds=3600)](https://github.com/PIVX-Project/PIVX/releases)
-
 
 
 ## What is CRIBS?

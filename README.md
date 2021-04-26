@@ -1,59 +1,24 @@
-CRIBX Core integration/staging repository
+CRIBS Core integration/staging repository
 =====================================
+[![master Actions Status](https://github.com/PIVX-Project/PIVX/workflows/CI%20Actions%20for%20PIVX/badge.svg)](https://github.com/PIVX-Project/PIVX/actions)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/PIVX-Project/pivx?color=%235c4b7d&cacheSeconds=3600)](https://github.com/PIVX-Project/PIVX/releases)
+[![GitHub Release Date](https://img.shields.io/github/release-date/PIVX-Project/pivx?color=%235c4b7d&cacheSeconds=3600)](https://github.com/PIVX-Project/PIVX/releases)
 
-[![Build Status](https://travis-ci.org/CRIBX-Project/CRIBX.svg?branch=master)](https://travis-ci.org/CRIBX-Project/CRIBX) [![GitHub version](https://badge.fury.io/gh/CRIBX-Project%2FCRIBX.svg)](https://badge.fury.io/gh/CRIBX-Project%2FCRIBX)
 
-CRIBX is an open source cryptocurrency focused on fast, private transactions using the Zerocoin protocol, with low transaction fees & environmental footprint.  It utilizes the first ever anonymous proof of stake protocol, called zPoS, combined with regular PoS and masternodes for securing its network. zPoS incentivizes using the privacy features available in CRIBX by granting a higher block reward for zPoS over regular PoS and masternodes. In practice, CRIBX has between 4 to 10 times higher use of its privacy features in comparison to other coins that combine public and private transactions. This is thanks to innovations like zPoS and integrating the Zerocoin protocol into light/mobile wallets, allowing for a complete and lightweight privacy protocol that can be used on the go. This also includes security improvements like [deterministic generation of zCRIB for easy backups.](https://www.reddit.com/r/cribs/comments/8gbjf7/how_to_use_deterministic_zerocoin_generation/)
-The goal of CRIBX is to achieve a decentralized, sustainable cryptocurrency with near instant full-time private transactions, fair governance and community intelligence.
-- Anonymized transactions & consensus using the [_Zerocoin Protocol_](http://www.cribs.org/zpiv) and [zPoS](https://cribs.org/zpos/).
-- light/mobile wallet privacy using the [Zerocoin Light Node Protocol](https://cribs.org/wp-content/uploads/2018/11/Zerocoin_Light_Node_Protocol.pdf)
-- Fast transactions featuring guaranteed zero confirmation transactions, we call it _SwiftX_.
-- Decentralized blockchain voting utilizing Masternode technology to form a DAO. The blockchain will distribute monthly treasury funds based on successful proposals submitted by the community and voted on by the DAO.
 
-More information at [cribs.org](http://www.cribs.org) Visit our ANN thread at [BitcoinTalk](http://www.bitcointalk.org/index.php?topic=1262920). Join the community at [CRIBX Discord](https://discordapp.com/invite/jzqVsJd).
+## What is CRIBS?
 
-### Coin Specs
-<table>
-<tr><td>Algo</td><td>Quark</td></tr>
-<tr><td>Block Time</td><td>60 Seconds</td></tr>
-<tr><td>Difficulty Retargeting</td><td>Every Block</td></tr>
-<tr><td>Max Coin Supply (PoW Phase)</td><td>43,199,500 CRIB</td></tr>
-<tr><td>Max Coin Supply (PoS Phase)</td><td>Infinite</td></tr>
-<tr><td>Premine</td><td>60,000 CRIB*</td></tr>
-</table>
+Crypto Cribs is a currency used for renting and renting out your houses apartments cars and more. 
 
-*60,000 CRIB Premine was burned in block [279917](http://www.presstab.pw/phpexplorer/CRIBX/block.php?blockhash=206d9cfe859798a0b0898ab00d7300be94de0f5469bb446cecb41c3e173a57e0)
+Crypto Cribs will allow you to rent out, and to rent fast securely and without paying taxes. 
 
-### Reward Distribution
+Set available dates, prices, discounts, and much more. Crypto Cribs will offer a website platform where you can offer your apartment for rent or find an apartment to rent.
 
-<table>
-<th colspan=4>Genesis Block</th>
-<tr><th>Block Height</th><th>Reward Amount</th><th>Notes</th></tr>
-<tr><td>1</td><td>60,000 CRIB</td><td>Initial Pre-mine, burnt in block <a href="http://www.presstab.pw/phpexplorer/CRIBX/block.php?blockhash=206d9cfe859798a0b0898ab00d7300be94de0f5469bb446cecb41c3e173a57e0">279917</a></td></tr>
-</table>
+You will be able to deposit your CRIBS to the platform and pay for the apartment you want to rent.
 
-### PoW Rewards Breakdown
+Also using the mobile app you will be able to convert your CRIBS into BTC or fiat on the fly. 
 
-<table>
-<th>Block Height</th><th>Masternodes</th><th>Miner</th><th>Budget</th>
-<tr><td>2-43200</td><td>20% (50 CRIB)</td><td>80% (200 CRIB)</td><td>N/A</td></tr>
-<tr><td>43201-151200</td><td>20% (50 CRIB)</td><td>70% (200 CRIB)</td><td>10% (25 CRIB)</td></tr>
-<tr><td>151201-259200</td><td>45% (22.5 CRIB)</td><td>45% (22.5 CRIB)</td><td>10% (5 CRIB)</td></tr>
-</table>
+Users will have their own accounts and will receive reviews of their services. 
 
-### PoS Rewards Breakdown
-
-<table>
-<th>Phase</th><th>Block Height</th><th>Reward</th><th>Masternodes & Stakers</th><th>Budget</th>
-<tr><td>Phase 0</td><td>259201-302399</td><td>50 CRIB</td><td>90% (45 CRIB)</td><td>10% (5 CRIB)</td></tr>
-<tr><td>Phase 1</td><td>302400-345599</td><td>45 CRIB</td><td>90% (40.5 CRIB)</td><td>10% (4.5 CRIB)</td></tr>
-<tr><td>Phase 2</td><td>345600-388799</td><td>40 CRIB</td><td>90% (36 CRIB)</td><td>10% (4 CRIB)</td></tr>
-<tr><td>Phase 3</td><td>388800-431999</td><td>35 CRIB</td><td>90% (31.5 CRIB)</td><td>10% (3.5 CRIB)</td></tr>
-<tr><td>Phase 4</td><td>432000-475199</td><td>30 CRIB</td><td>90% (27 CRIB)</td><td>10% (3 CRIB)</td></tr>
-<tr><td>Phase 5</td><td>475200-518399</td><td>25 CRIB</td><td>90% (22.5 CRIB)</td><td>10% (2.5 CRIB)</td></tr>
-<tr><td>Phase 6</td><td>518400-561599</td><td>20 CRIB</td><td>90% (18 CRIB)</td><td>10% (2 CRIB)</td></tr>
-<tr><td>Phase 7</td><td>561600-604799</td><td>15 CRIB</td><td>90% (13.5 CRIB)</td><td>10% (1.5 CRIB)</td></tr>
-<tr><td>Phase 8</td><td>604800-647999</td><td>10 CRIB</td><td>90% (9 CRIB)</td><td>10% (1 CRIB)</td></tr>
-<tr><td>Phase 9</td><td>648000-1154203</td><td>5 CRIB</td><td>90% (4.5 CRIB)</td><td>10% (0.5 CRIB)</td></tr>
-<tr><td>Phase X</td><td>1154203-∞</td><td>6 CRIB</td><td>84% (5 CRIB/zCRIB)</td><td>16% (1 CRIB)</td></tr>
-</table>
+## License
+CRIBS Core is released under the terms of the MIT license. See [COPYING](https://github.com/PIVX-Project/PIVX/blob/master/COPYING) for more information or see https://opensource.org/licenses/MIT.

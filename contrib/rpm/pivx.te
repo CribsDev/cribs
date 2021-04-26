@@ -1,0 +1,81 @@
+policy_module(cribs, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type cribs_t;
+type cribs_exec_t;
+init_daemon_domain(cribs_t, cribs_exec_t)
+
+permissive cribs_t;
+
+type cribs_initrc_exec_t;
+init_script_file(cribs_initrc_exec_t)
+
+type cribs_conf_t;
+files_type(cribs_conf_t)
+
+type cribs_var_lib_t;
+files_type(cribs_var_lib_t)
+
+type cribs_var_run_t;
+files_type(cribs_var_run_t)
+
+type cribs_port_t;
+corenet_port(cribs_port_t)
+
+########################################
+#
+# cribs local policy
+#
+allow cribs_t self:process { fork };
+
+allow cribs_t self:fifo_file rw_fifo_file_perms;
+allow cribs_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(cribs_t, cribs_conf_t, cribs_conf_t)
+manage_files_pattern(cribs_t, cribs_conf_t, cribs_conf_t)
+
+manage_dirs_pattern(cribs_t, cribs_var_lib_t, cribs_var_lib_t)
+manage_files_pattern(cribs_t, cribs_var_lib_t, cribs_var_lib_t)
+files_var_lib_filetrans(cribs_t, cribs_var_lib_t, { dir file })
+
+manage_dirs_pattern(cribs_t, cribs_var_run_t, cribs_var_run_t)
+manage_files_pattern(cribs_t, cribs_var_run_t, cribs_var_run_t)
+
+sysnet_dns_name_resolve(cribs_t)
+corenet_all_recvfrom_unlabeled(cribs_t)
+
+allow cribs_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(cribs_t)
+corenet_tcp_sendrecv_generic_node(cribs_t)
+corenet_tcp_sendrecv_all_ports(cribs_t)
+corenet_tcp_bind_generic_node(cribs_t)
+
+gen_require(`
+    type cribs_port_t;
+')
+allow cribs_t cribs_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type cribs_port_t;
+')
+allow cribs_t cribs_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(cribs_t)
+
+files_read_etc_files(cribs_t)
+
+miscfiles_read_localization(cribs_t)
+
+sysnet_dns_name_resolve(cribs_t)
+
+allow cribs_t cribs_exec_t:file execute_no_trans;
+allow cribs_t self:process setsched;
+corecmd_exec_ls(cribs_t)
+corenet_tcp_connect_http_port(cribs_t)
+dev_read_urand(cribs_t)
+fs_getattr_xattr_fs(cribs_t)
+kernel_read_system_state(cribs_t)

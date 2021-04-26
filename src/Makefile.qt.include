@@ -1,0 +1,726 @@
+# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+bin_PROGRAMS += qt/cribs-qt
+EXTRA_LIBRARIES += qt/libbitcoinqt.a
+
+# cribs qt core #
+include Makefile.qt_locale.include
+
+QT_FORMS_UI = \
+  qt/forms/addressbookpage.ui \
+  qt/forms/askpassphrasedialog.ui \
+  qt/forms/coincontroldialog.ui \
+  qt/forms/editaddressdialog.ui \
+  qt/forms/helpmessagedialog.ui \
+  qt/forms/intro.ui \
+  qt/forms/openuridialog.ui \
+  qt/forms/optionsdialog.ui \
+  qt/forms/rpcconsole.ui \
+  qt/cribs/forms/loadingdialog.ui \
+  qt/cribs/forms/snackbar.ui \
+  qt/cribs/forms/navmenuwidget.ui \
+  qt/cribs/forms/lockunlock.ui \
+  qt/cribs/forms/expandablebutton.ui \
+  qt/cribs/forms/receivedialog.ui \
+  qt/cribs/forms/topbar.ui \
+  qt/cribs/forms/txrow.ui \
+  qt/cribs/forms/dashboardwidget.ui \
+  qt/cribs/forms/addresslabelrow.ui \
+  qt/cribs/forms/contactdropdownrow.ui \
+  qt/cribs/forms/mninfodialog.ui \
+  qt/cribs/forms/optionbutton.ui \
+  qt/cribs/forms/masternodewizarddialog.ui \
+  qt/cribs/forms/mnrow.ui \
+  qt/cribs/forms/masternodeswidget.ui \
+  qt/cribs/forms/myaddressrow.ui \
+  qt/cribs/forms/csrow.ui \
+  qt/cribs/forms/sendchangeaddressdialog.ui \
+  qt/cribs/forms/sendconfirmdialog.ui \
+  qt/cribs/forms/sendcustomfeedialog.ui \
+  qt/cribs/forms/sendchangeaddressdialog.ui \
+  qt/cribs/forms/sendmultirow.ui \
+  qt/cribs/forms/send.ui \
+  qt/cribs/forms/addnewaddressdialog.ui \
+  qt/cribs/forms/addnewcontactdialog.ui \
+  qt/cribs/forms/requestdialog.ui \
+  qt/cribs/forms/receivewidget.ui \
+  qt/cribs/forms/tooltipmenu.ui \
+  qt/cribs/forms/addresseswidget.ui \
+  qt/cribs/forms/defaultdialog.ui \
+  qt/cribs/forms/coldstakingwidget.ui \
+  qt/cribs/settings/forms/settingsbackupwallet.ui \
+  qt/cribs/settings/forms/settingsexportcsv.ui \
+  qt/cribs/settings/forms/settingsbittoolwidget.ui \
+  qt/cribs/settings/forms/settingsconsolewidget.ui \
+  qt/cribs/settings/forms/settingsdisplayoptionswidget.ui \
+  qt/cribs/settings/forms/settingsfaqwidget.ui \
+  qt/cribs/settings/forms/settingsinformationwidget.ui \
+  qt/cribs/settings/forms/settingsmainoptionswidget.ui \
+  qt/cribs/settings/forms/settingsmultisenddialog.ui \
+  qt/cribs/settings/forms/settingsmultisendwidget.ui \
+  qt/cribs/settings/forms/settingssignmessagewidgets.ui \
+  qt/cribs/settings/forms/settingswalletoptionswidget.ui \
+  qt/cribs/settings/forms/settingswalletrepairwidget.ui \
+  qt/cribs/settings/forms/settingswidget.ui \
+  qt/cribs/forms/welcomecontentwidget.ui \
+  qt/cribs/forms/splash.ui
+
+QT_MOC_CPP = \
+  qt/moc_addressbookpage.cpp \
+  qt/moc_addresstablemodel.cpp \
+  qt/moc_askpassphrasedialog.cpp \
+  qt/moc_bantablemodel.cpp \
+  qt/moc_bitcoinaddressvalidator.cpp \
+  qt/cribs/moc_cribsgui.cpp \
+  qt/moc_bitcoinunits.cpp \
+  qt/moc_clientmodel.cpp \
+  qt/moc_coincontroldialog.cpp \
+  qt/moc_coincontroltreewidget.cpp \
+  qt/moc_csvmodelwriter.cpp \
+  qt/moc_editaddressdialog.cpp \
+  qt/moc_guiutil.cpp \
+  qt/moc_intro.cpp \
+  qt/moc_macdockiconhandler.cpp \
+  qt/moc_macnotificationhandler.cpp \
+  qt/moc_notificator.cpp \
+  qt/moc_openuridialog.cpp \
+  qt/moc_optionsdialog.cpp \
+  qt/moc_optionsmodel.cpp \
+  qt/moc_peertablemodel.cpp \
+  qt/moc_paymentserver.cpp \
+  qt/moc_qvalidatedlineedit.cpp \
+  qt/moc_qvaluecombobox.cpp \
+  qt/moc_recentrequeststablemodel.cpp \
+  qt/moc_rpcconsole.cpp \
+  qt/moc_trafficgraphwidget.cpp \
+  qt/moc_transactiondesc.cpp \
+  qt/moc_transactionfilterproxy.cpp \
+  qt/moc_transactiontablemodel.cpp \
+  qt/moc_utilitydialog.cpp \
+  qt/moc_walletmodel.cpp \
+  qt/cribs/moc_loadingdialog.cpp \
+  qt/cribs/moc_pwidget.cpp \
+  qt/cribs/moc_focuseddialog.cpp \
+  qt/cribs/moc_snackbar.cpp \
+  qt/cribs/moc_navmenuwidget.cpp \
+  qt/cribs/moc_lockunlock.cpp \
+  qt/cribs/moc_expandablebutton.cpp \
+  qt/cribs/moc_furabstractlistitemdelegate.cpp \
+  qt/cribs/moc_receivedialog.cpp \
+  qt/cribs/moc_pfborderimage.cpp \
+  qt/cribs/moc_topbar.cpp \
+  qt/cribs/moc_txrow.cpp \
+  qt/cribs/moc_dashboardwidget.cpp \
+  qt/cribs/moc_addresslabelrow.cpp \
+  qt/cribs/moc_contactdropdownrow.cpp \
+  qt/cribs/moc_mninfodialog.cpp \
+  qt/cribs/moc_optionbutton.cpp \
+  qt/cribs/moc_coldstakingmodel.cpp \
+  qt/cribs/moc_mnmodel.cpp \
+  qt/cribs/moc_masternodewizarddialog.cpp \
+  qt/cribs/moc_mnrow.cpp \
+  qt/cribs/moc_masternodeswidget.cpp \
+  qt/cribs/moc_myaddressrow.cpp \
+  qt/cribs/moc_csrow.cpp \
+  qt/cribs/moc_contactsdropdown.cpp \
+  qt/cribs/moc_sendchangeaddressdialog.cpp \
+  qt/cribs/moc_sendconfirmdialog.cpp \
+  qt/cribs/moc_sendcustomfeedialog.cpp \
+  qt/cribs/moc_sendchangeaddressdialog.cpp \
+  qt/cribs/moc_sendmultirow.cpp \
+  qt/cribs/moc_send.cpp \
+  qt/cribs/moc_addnewaddressdialog.cpp \
+  qt/cribs/moc_addnewcontactdialog.cpp \
+  qt/cribs/moc_requestdialog.cpp \
+  qt/cribs/moc_receivewidget.cpp \
+  qt/cribs/moc_tooltipmenu.cpp \
+  qt/cribs/moc_addresseswidget.cpp \
+  qt/cribs/moc_defaultdialog.cpp \
+  qt/cribs/moc_coldstakingwidget.cpp \
+  qt/cribs/settings/moc_settingsbackupwallet.cpp \
+  qt/cribs/settings/moc_settingsexportcsv.cpp \
+  qt/cribs/settings/moc_settingsbittoolwidget.cpp \
+  qt/cribs/settings/moc_settingsconsolewidget.cpp \
+  qt/cribs/settings/moc_settingsdisplayoptionswidget.cpp \
+  qt/cribs/settings/moc_settingsfaqwidget.cpp \
+  qt/cribs/settings/moc_settingsinformationwidget.cpp \
+  qt/cribs/settings/moc_settingsmainoptionswidget.cpp \
+  qt/cribs/settings/moc_settingsmultisenddialog.cpp \
+  qt/cribs/settings/moc_settingsmultisendwidget.cpp \
+  qt/cribs/settings/moc_settingssignmessagewidgets.cpp \
+  qt/cribs/settings/moc_settingswalletoptionswidget.cpp \
+  qt/cribs/settings/moc_settingswalletrepairwidget.cpp \
+  qt/cribs/settings/moc_settingswidget.cpp \
+  qt/cribs/moc_welcomecontentwidget.cpp \
+  qt/cribs/moc_splash.cpp
+
+BITCOIN_MM = \
+  qt/macdockiconhandler.mm \
+  qt/macnotificationhandler.mm
+
+QT_MOC = \
+  qt/cribs.moc \
+  qt/intro.moc \
+  qt/rpcconsole.moc \
+  qt/cribs/settings/moc_settingsconsolewidget.cpp
+
+QT_QRC_CPP = qt/qrc_cribs.cpp
+QT_QRC = qt/cribs.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_cribs_locale.cpp
+QT_QRC_LOCALE = qt/cribs_locale.qrc
+
+PROTOBUF_CC = qt/paymentrequest.pb.cc
+PROTOBUF_H = qt/paymentrequest.pb.h
+PROTOBUF_PROTO = qt/paymentrequest.proto
+
+BITCOIN_QT_H = \
+  qt/addressbookpage.h \
+  qt/addresstablemodel.h \
+  qt/askpassphrasedialog.h \
+  qt/bantablemodel.h \
+  qt/bitcoinaddressvalidator.h \
+  qt/cribs/cribsgui.h \
+  qt/bitcoinunits.h \
+  qt/clientmodel.h \
+  qt/coincontroldialog.h \
+  qt/coincontroltreewidget.h \
+  qt/csvmodelwriter.h \
+  qt/editaddressdialog.h \
+  qt/guiconstants.h \
+  qt/guiutil.h \
+  qt/intro.h \
+  qt/macdockiconhandler.h \
+  qt/macnotificationhandler.h \
+  qt/networkstyle.h \
+  qt/notificator.h \
+  qt/openuridialog.h \
+  qt/optionsdialog.h \
+  qt/optionsmodel.h \
+  qt/paymentrequestplus.h \
+  qt/paymentserver.h \
+  qt/peertablemodel.h \
+  qt/platformstyle.h \
+  qt/qvalidatedlineedit.h \
+  qt/qvaluecombobox.h \
+  qt/recentrequeststablemodel.h \
+  qt/rpcconsole.h \
+  qt/trafficgraphwidget.h \
+  qt/transactiondesc.h \
+  qt/transactionfilterproxy.h \
+  qt/transactionrecord.h \
+  qt/transactiontablemodel.h \
+  qt/utilitydialog.h \
+  qt/walletmodel.h \
+  qt/walletmodeltransaction.h \
+  qt/cribs/prunnable.h \
+  qt/cribs/pfborderimage.h \
+  qt/cribs/loadingdialog.h \
+  qt/winshutdownmonitor.h \
+  qt/cribs/pwidget.h \
+  qt/cribs/focuseddialog.h \
+  qt/cribs/guitransactionsutils.h \
+  qt/cribs/snackbar.h \
+  qt/cribs/navmenuwidget.h \
+  qt/cribs/lockunlock.h \
+  qt/cribs/receivedialog.h \
+  qt/cribs/furlistrow.h \
+  qt/cribs/furabstractlistitemdelegate.h \
+  qt/cribs/txviewholder.h \
+  qt/cribs/qtutils.h \
+  qt/cribs/expandablebutton.h \
+  qt/cribs/topbar.h \
+  qt/cribs/txrow.h \
+  qt/cribs/addressholder.h \
+  qt/cribs/addressfilterproxymodel.h \
+  qt/cribs/dashboardwidget.h \
+  qt/cribs/addresslabelrow.h \
+  qt/cribs/contactdropdownrow.h \
+  qt/cribs/mninfodialog.h \
+  qt/cribs/optionbutton.h \
+  qt/cribs/coldstakingmodel.h \
+  qt/cribs/mnmodel.h \
+  qt/cribs/masternodewizarddialog.h \
+  qt/cribs/mnrow.h \
+  qt/cribs/masternodeswidget.h \
+  qt/cribs/myaddressrow.h \
+  qt/cribs/csrow.h \
+  qt/cribs/contactsdropdown.h \
+  qt/cribs/sendchangeaddressdialog.h \
+  qt/cribs/sendconfirmdialog.h \
+  qt/cribs/sendcustomfeedialog.h \
+  qt/cribs/sendchangeaddressdialog.h \
+  qt/cribs/sendmultirow.h \
+  qt/cribs/send.h \
+  qt/cribs/addnewaddressdialog.h \
+  qt/cribs/addnewcontactdialog.h \
+  qt/cribs/requestdialog.h \
+  qt/cribs/receivewidget.h \
+  qt/cribs/tooltipmenu.h \
+  qt/cribs/addresseswidget.h \
+  qt/cribs/defaultdialog.h \
+  qt/cribs/coldstakingwidget.h \
+  qt/cribs/settings/settingsbackupwallet.h \
+  qt/cribs/settings/settingsexportcsv.h \
+  qt/cribs/settings/settingsbittoolwidget.h \
+  qt/cribs/settings/settingsconsolewidget.h \
+  qt/cribs/settings/settingsdisplayoptionswidget.h \
+  qt/cribs/settings/settingsfaqwidget.h \
+  qt/cribs/settings/settingsinformationwidget.h \
+  qt/cribs/settings/settingsmainoptionswidget.h \
+  qt/cribs/settings/settingsmultisenddialog.h \
+  qt/cribs/settings/settingsmultisendwidget.h \
+  qt/cribs/settings/settingssignmessagewidgets.h \
+  qt/cribs/settings/settingswalletoptionswidget.h \
+  qt/cribs/settings/settingswalletrepairwidget.h \
+  qt/cribs/settings/settingswidget.h \
+  qt/cribs/welcomecontentwidget.h \
+  qt/cribs/splash.h
+
+RES_ICONS = \
+  qt/res/icons/bitcoin.ico \
+  qt/res/icons/bitcoin.png \
+  qt/res/icons/bitcoin_testnet.ico \
+  qt/res/icons/bitcoin_testnet.png \
+  qt/res/icons/bitcoin_regtest.png \
+  qt/res/icons/lock_closed.png \
+  qt/res/icons/lock_open.png \
+  qt/res/icons/overview.png \
+  qt/res/icons/ic-transaction-received.svg \
+  qt/res/icons/ic-transaction-mint.svg \
+  qt/res/icons/ic-transaction-sent.svg \
+  qt/res/icons/ic-transaction-staked.svg \
+  qt/cribs/res/img/bg-dashboard-banner.png \
+  qt/cribs/res/img/bg-multi-number-dark.svg \
+  qt/cribs/res/img/ic-check-locked.svg \
+  qt/cribs/res/img/ic-nav-address.svg \
+  qt/cribs/res/img/ic-update.svg \
+  qt/cribs/res/img/bg-multi-number.svg \
+  qt/cribs/res/img/ic-check-mint-off.svg \
+  qt/cribs/res/img/ic-nav-cold-staking.svg \
+  qt/cribs/res/img/ic-nav-cold-staking-active.svg \
+  qt/cribs/res/img/ic-nav-dashboard-active.svg \
+  qt/cribs/res/img/ic-wallet-status-locked.svg \
+  qt/cribs/res/img/bg-splash.svg \
+  qt/cribs/res/img/bg-splash.png \
+  qt/cribs/res/img/ic-check-mint.svg \
+  qt/cribs/res/img/ic-nav-dashboard-hover.svg \
+  qt/cribs/res/img/ic-wallet-status-staking.svg \
+  qt/cribs/res/img/ic-check-peers-off.svg \
+  qt/cribs/res/img/ic-nav-dashboard.svg \
+  qt/cribs/res/img/ic-wallet-status-unlocked.svg \
+  qt/cribs/res/img/ic-check-peers.svg \
+  qt/cribs/res/img/ic-nav-master-active.svg \
+  qt/cribs/res/img/ic-watch-password-white.svg \
+  qt/cribs/res/img/bg-welcome-container.jpg \
+  qt/cribs/res/img/bg-welcome-container.png \
+  qt/cribs/res/img/bg-welcome-container.svg \
+  qt/cribs/res/img/bg-welcome-container@2x.png \
+  qt/cribs/res/img/bg-welcome-container@3x.png \
+  qt/cribs/res/img/ic-check-staking-off.svg \
+  qt/cribs/res/img/ic-nav-master-hover.svg \
+  qt/cribs/res/img/ic-watch-password.svg \
+  qt/cribs/res/img/bg-welcome.jpg \
+  qt/cribs/res/img/bg-welcome.svg \
+  qt/cribs/res/img/bg-welcome@2x.jpg \
+  qt/cribs/res/img/bg-welcome@3x.jpg \
+  qt/cribs/res/img/bg-welcome.png \
+  qt/cribs/res/img/ic-check-staking.svg \
+  qt/cribs/res/img/ic-nav-master.svg \
+  qt/cribs/res/img/img-dashboard-banner.jpg \
+  qt/cribs/res/img/btn-radio-active.svg \
+  qt/cribs/res/img/ic-check-sync-off.svg \
+  qt/cribs/res/img/ic-nav-privacy-active.svg \
+  qt/cribs/res/img/img-empty-contacts.svg \
+  qt/cribs/res/img/btn-radio-off.svg \
+  qt/cribs/res/img/ic-check-sync.png \
+  qt/cribs/res/img/ic-nav-privacy-hover.svg \
+  qt/cribs/res/img/img-empty-dark-contacts.svg \
+  qt/cribs/res/img/ic-contact-arrow-down.svg \
+  qt/cribs/res/img/ic-contact-arrow-down-white.svg \
+  qt/cribs/res/img/ic-check-sync.svg \
+  qt/cribs/res/img/ic-check-faq.svg \
+  qt/cribs/res/img/ic-nav-privacy.svg \
+  qt/cribs/res/img/img-empty-dark-error.svg \
+  qt/cribs/res/img/ic-add-label.svg \
+  qt/cribs/res/img/ic-pending.svg \
+  qt/cribs/res/img/ic-check-theme-dark.svg \
+  qt/cribs/res/img/ic-nav-receive-active.svg \
+  qt/cribs/res/img/img-empty-dark-masternode.svg \
+  qt/cribs/res/img/ic-add-liliac.svg \
+  qt/cribs/res/img/ic-check-theme-light.svg \
+  qt/cribs/res/img/ic-nav-receive-hover.svg \
+  qt/cribs/res/img/img-empty-dark-multisend.svg \
+  qt/cribs/res/img/ic-add-purple.svg \
+  qt/cribs/res/img/ic-check-white.svg \
+  qt/cribs/res/img/ic-nav-receive.svg \
+  qt/cribs/res/img/img-empty-dark-peers.svg \
+  qt/cribs/res/img/ic-add.svg \
+  qt/cribs/res/img/ic-check.svg \
+  qt/cribs/res/img/ic-nav-send-active.svg \
+  qt/cribs/res/img/img-empty-dark-staking-off.svg \
+  qt/cribs/res/img/img-empty-dark-staking-on.svg \
+  qt/cribs/res/img/ic-address-book-grey.svg \
+  qt/cribs/res/img/ic-chevron-left.svg \
+  qt/cribs/res/img/ic-nav-send-hover.svg \
+  qt/cribs/res/img/img-empty-dark-transactions.svg \
+  qt/cribs/res/img/ic-address-book-white.svg \
+  qt/cribs/res/img/ic-chevron-right.svg \
+  qt/cribs/res/img/ic-nav-send.svg \
+  qt/cribs/res/img/img-empty-error.svg \
+  qt/cribs/res/img/ic-address-book.svg \
+  qt/cribs/res/img/ic-clear-liliac.svg \
+  qt/cribs/res/img/ic-nav-settings-active.svg \
+  qt/cribs/res/img/img-empty-masternode.svg \
+  qt/cribs/res/img/ic-address-send-white.svg \
+  qt/cribs/res/img/ic-clear-purple.svg \
+  qt/cribs/res/img/ic-nav-settings-hover.svg \
+  qt/cribs/res/img/img-empty-multisend.svg \
+  qt/cribs/res/img/ic-address-send.svg \
+  qt/cribs/res/img/ic-close-white.svg \
+  qt/cribs/res/img/ic-nav-settings.svg \
+  qt/cribs/res/img/img-empty-peers.svg \
+  qt/cribs/res/img/img-empty-privacy.svg \
+  qt/cribs/res/img/img-empty-privacy-dark.svg \
+  qt/cribs/res/img/ic-arrow-drop-down-white.svg \
+  qt/cribs/res/img/ic-close.svg \
+  qt/cribs/res/img/ic-radio-liliac-on.svg \
+  qt/cribs/res/img/img-empty-staking-off.svg \
+  qt/cribs/res/img/ic-arrow-drop-down.svg \
+  qt/cribs/res/img/ic-coin-piv.svg \
+  qt/cribs/res/img/ic-receive-off.svg \
+  qt/cribs/res/img/img-empty-staking-on.svg \
+  qt/cribs/res/img/ic-arrow-drop-up-white.svg \
+  qt/cribs/res/img/ic-coin-zpiv.png \
+  qt/cribs/res/img/ic-receive-on.svg \
+  qt/cribs/res/img/img-empty-transactions.svg \
+  qt/cribs/res/img/ic-arrow-drop-up.svg \
+  qt/cribs/res/img/ic-coin-zpiv.svg \
+  qt/cribs/res/img/ic-received.svg \
+  qt/cribs/res/img/img-logo-cribs.png \
+  qt/cribs/res/img/ic-arrow-drop-white-down.svg \
+  qt/cribs/res/img/ic-combo-box.svg \
+  qt/cribs/res/img/ic-send.svg \
+  qt/cribs/res/img/img-logo-cribs@2x.png \
+  qt/cribs/res/img/ic-arrow-purple-down.svg \
+  qt/cribs/res/img/ic-connect.svg \
+  qt/cribs/res/img/ic-submenu-lock.svg \
+  qt/cribs/res/img/img-logo-cribs@3x.png \
+  qt/cribs/res/img/img-logo-cribs.svg \
+  qt/cribs/res/img/ic-arrow-right-white.svg \
+  qt/cribs/res/img/ic-arrow-left-white.svg \
+  qt/cribs/res/img/ic-arrow-left.svg \
+  qt/cribs/res/img/ic-copy-liliac.svg \
+  qt/cribs/res/img/ic-submenu-staking.svg \
+  qt/cribs/res/img/img-nav-logo-cribs.png \
+  qt/cribs/res/img/ic-arrow-right.svg \
+  qt/cribs/res/img/ic-copy.svg \
+  qt/cribs/res/img/ic-copy-big.svg \
+  qt/cribs/res/img/ic-copy-big-white.svg \
+  qt/cribs/res/img/ic-submenu-unlock.svg \
+  qt/cribs/res/img/img-nav-logo.png \
+  qt/cribs/res/img/ic-arrow-white-left.svg \
+  qt/cribs/res/img/ic-exit.svg \
+  qt/cribs/res/img/ic-switch-liliac-on.svg \
+  qt/cribs/res/img/img-nav-logo.svg \
+  qt/cribs/res/img/ic-arrow-white-right.svg \
+  qt/cribs/res/img/ic-expand.svg \
+  qt/cribs/res/img/ic-switch-off.svg \
+  qt/cribs/res/img/img-qr-test-big.png \
+  qt/cribs/res/img/ic-check-active.svg \
+  qt/cribs/res/img/ic-folder.svg \
+  qt/cribs/res/img/ic-switch-on.svg \
+  qt/cribs/res/img/img-qr-test.png \
+  qt/cribs/res/img/ic-check-box.svg \
+  qt/cribs/res/img/ic-check-box-dark-active.svg \
+  qt/cribs/res/img/ic-check-box-indeterminate.svg \
+  qt/cribs/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/cribs/res/img/ic-label-liliac.svg \
+  qt/cribs/res/img/ic-transaction-warning.svg \
+  qt/cribs/res/img/ic-transaction-mint.svg \
+  qt/cribs/res/img/ic-transaction-mint-inactive.svg \
+  qt/cribs/res/img/ic-check-cold-staking.svg \
+  qt/cribs/res/img/ic-check-cold-staking-off.svg \
+  qt/cribs/res/img/ic-check-cold-staking-enabled.svg \
+  qt/cribs/res/img/dark/ic-transaction-cs-contract.svg \
+  qt/cribs/res/img/dark/ic-transaction-cs-contract-inactive.svg \
+  qt/cribs/res/img/img-qr.svg \
+  qt/cribs/res/img/ic-check-connect-off.svg \
+  qt/cribs/res/img/ic-check-tor-off.svg \
+  qt/cribs/res/img/ic-check-tor.svg \
+  qt/cribs/res/img/ic-label.svg \
+  qt/cribs/res/img/ic-transaction-received.svg \
+  qt/cribs/res/img/dark/ic-transaction-received.svg \
+  qt/cribs/res/img/dark/ic-transaction-warning.svg \
+  qt/cribs/res/img/dark/ic-transaction-mint.svg \
+  qt/cribs/res/img/dark/ic-transaction-mint-inactive.svg \
+  qt/cribs/res/img/ic-transaction-received-inactive.svg \
+  qt/cribs/res/img/dark/ic-transaction-received-inactive.svg \
+  qt/cribs/res/img/img-welcome-step1.png \
+  qt/cribs/res/img/ic-check-connect.svg \
+  qt/cribs/res/img/ic-menu-hover.svg \
+  qt/cribs/res/img/ic-transaction-sent.svg \
+  qt/cribs/res/img/ic-transaction-sent-inactive.svg \
+  qt/cribs/res/img/dark/ic-transaction-sent.svg \
+  qt/cribs/res/img/dark/ic-transaction-sent-inactive.svg \
+  qt/cribs/res/img/img-welcome-step2.png \
+  qt/cribs/res/img/ic-check-dark.svg \
+  qt/cribs/res/img/ic-mint.svg \
+  qt/cribs/res/img/ic-transaction-staked.svg \
+  qt/cribs/res/img/ic-transaction-staked-inactive.svg \
+  qt/cribs/res/img/dark/ic-transaction-staked.svg \
+  qt/cribs/res/img/dark/ic-transaction-staked-inactive.svg \
+  qt/cribs/res/img/img-welcome-step3.png \
+  qt/cribs/res/img/ic-check-liliac-on.svg \
+  qt/cribs/res/img/ic-nav-address-active.svg \
+  qt/cribs/res/img/ic-unlock-staking.svg \
+  qt/cribs/res/img/img-welcome-step4.png \
+  qt/cribs/res/img/ic-check-locked-off.svg \
+  qt/cribs/res/img/ic-nav-address-hover.svg \
+  qt/cribs/res/img/ic-update-liliac.svg \
+  qt/cribs/res/img/ic-arrow-drop-down-purple.svg \
+  qt/cribs/res/img/ic-arrow-drop-up-purple.svg \
+  qt/cribs/res/img/ic-check-liliac-indeterminate.svg \
+  qt/cribs/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/cribs/res/img/ic-transaction-stake-delegated.svg \
+  qt/cribs/res/img/ic-transaction-stake-delegated-inactive.svg \
+  qt/cribs/res/img/ic-transaction-stake-hot.svg \
+  qt/cribs/res/img/ic-transaction-stake-hot-inactive.svg \
+  qt/cribs/res/img/dark/ic-transaction-stake-hot.svg \
+  qt/cribs/res/img/dark/ic-transaction-stake-hot-inactive.svg \
+  qt/cribs/res/img/dark/ic-transaction-stake-delegated.svg \
+  qt/cribs/res/img/dark/ic-transaction-stake-delegated-inactive.svg \
+  qt/cribs/res/img/ic-transaction-cs-contract.svg \
+  qt/cribs/res/img/ic-transaction-cs-contract-inactive.svg \
+  qt/cribs/res/img/ic-check-box-indeterminate.svg \
+  qt/cribs/res/img/ani-loading-dark.gif \
+  qt/cribs/res/img/ani-loading.gif
+
+
+
+BITCOIN_QT_BASE_CPP = \
+  qt/bantablemodel.cpp \
+  qt/bitcoinaddressvalidator.cpp \
+  qt/cribs/cribsgui.cpp \
+  qt/bitcoinunits.cpp \
+  qt/clientmodel.cpp \
+  qt/csvmodelwriter.cpp \
+  qt/guiutil.cpp \
+  qt/intro.cpp \
+  qt/networkstyle.cpp \
+  qt/notificator.cpp \
+  qt/optionsdialog.cpp \
+  qt/optionsmodel.cpp \
+  qt/peertablemodel.cpp \
+  qt/platformstyle.cpp \
+  qt/qvalidatedlineedit.cpp \
+  qt/qvaluecombobox.cpp \
+  qt/rpcconsole.cpp \
+  qt/trafficgraphwidget.cpp \
+  qt/utilitydialog.cpp
+
+BITCOIN_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
+
+BITCOIN_QT_WALLET_CPP = \
+  qt/addressbookpage.cpp \
+  qt/addresstablemodel.cpp \
+  qt/askpassphrasedialog.cpp \
+  qt/coincontroldialog.cpp \
+  qt/coincontroltreewidget.cpp \
+  qt/editaddressdialog.cpp \
+  qt/openuridialog.cpp \
+  qt/paymentrequestplus.cpp \
+  qt/paymentserver.cpp \
+  qt/recentrequeststablemodel.cpp \
+  qt/transactiondesc.cpp \
+  qt/transactionfilterproxy.cpp \
+  qt/transactionrecord.cpp \
+  qt/transactiontablemodel.cpp \
+  qt/walletmodel.cpp \
+  qt/walletmodeltransaction.cpp \
+  qt/cribs/loadingdialog.cpp \
+  qt/cribs/pwidget.cpp \
+  qt/cribs/focuseddialog.cpp \
+  qt/cribs/guitransactionsutils.cpp \
+  qt/cribs/snackbar.cpp \
+  qt/cribs/navmenuwidget.cpp \
+  qt/cribs/lockunlock.cpp \
+  qt/cribs/receivedialog.cpp \
+  qt/cribs/furabstractlistitemdelegate.cpp \
+  qt/cribs/txviewholder.cpp \
+  qt/cribs/qtutils.cpp \
+  qt/cribs/expandablebutton.cpp \
+  qt/cribs/topbar.cpp \
+  qt/cribs/txrow.cpp \
+  qt/cribs/addressholder.cpp \
+  qt/cribs/addressfilterproxymodel.cpp \
+  qt/cribs/dashboardwidget.cpp \
+  qt/cribs/addresslabelrow.cpp \
+  qt/cribs/contactdropdownrow.cpp \
+  qt/cribs/contactsdropdown.cpp \
+  qt/cribs/optionbutton.cpp \
+  qt/cribs/mninfodialog.cpp \
+  qt/cribs/coldstakingmodel.cpp \
+  qt/cribs/mnmodel.cpp \
+  qt/cribs/masternodewizarddialog.cpp \
+  qt/cribs/mnrow.cpp \
+  qt/cribs/masternodeswidget.cpp \
+  qt/cribs/myaddressrow.cpp \
+  qt/cribs/csrow.cpp \
+  qt/cribs/sendchangeaddressdialog.cpp \
+  qt/cribs/sendconfirmdialog.cpp \
+  qt/cribs/sendcustomfeedialog.cpp \
+  qt/cribs/sendchangeaddressdialog.cpp \
+  qt/cribs/sendmultirow.cpp \
+  qt/cribs/send.cpp \
+  qt/cribs/addnewaddressdialog.cpp \
+  qt/cribs/addnewcontactdialog.cpp \
+  qt/cribs/requestdialog.cpp \
+  qt/cribs/receivewidget.cpp \
+  qt/cribs/tooltipmenu.cpp \
+  qt/cribs/addresseswidget.cpp \
+  qt/cribs/defaultdialog.cpp \
+  qt/cribs/coldstakingwidget.cpp \
+  qt/cribs/settings/settingsbackupwallet.cpp \
+  qt/cribs/settings/settingsexportcsv.cpp \
+  qt/cribs/settings/settingsbittoolwidget.cpp \
+  qt/cribs/settings/settingsconsolewidget.cpp \
+  qt/cribs/settings/settingsdisplayoptionswidget.cpp \
+  qt/cribs/settings/settingsfaqwidget.cpp \
+  qt/cribs/settings/settingsinformationwidget.cpp \
+  qt/cribs/settings/settingsmainoptionswidget.cpp \
+  qt/cribs/settings/settingsmultisenddialog.cpp \
+  qt/cribs/settings/settingsmultisendwidget.cpp \
+  qt/cribs/settings/settingssignmessagewidgets.cpp \
+  qt/cribs/settings/settingswalletoptionswidget.cpp \
+  qt/cribs/settings/settingswalletrepairwidget.cpp \
+  qt/cribs/settings/settingswidget.cpp \
+  qt/cribs/welcomecontentwidget.cpp \
+  qt/cribs/splash.cpp
+
+
+BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
+if TARGET_WINDOWS
+BITCOIN_QT_CPP += $(BITCOIN_QT_WINDOWS_CPP)
+endif
+if ENABLE_WALLET
+BITCOIN_QT_CPP += $(BITCOIN_QT_WALLET_CPP)
+endif
+
+RES_IMAGES = \
+  qt/res/images/about.png \
+  qt/res/images/splash.png \
+  qt/res/images/splash_testnet.png \
+  qt/res/images/splash_regtest.png
+
+RES_CSS = \
+  qt/res/css/default.css \
+  qt/cribs/res/css/style_dark.css \
+  qt/cribs/res/css/style_light.css
+
+BITCOIN_RC = qt/res/cribs-qt-res.rc
+
+BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
+  -I$(builddir)/qt/forms -DQT_NO_KEYWORDS
+
+qt_libbitcoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_libbitcoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_libbitcoinqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_libbitcoinqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
+  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS)
+
+nodist_qt_libbitcoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
+  $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
+
+# forms/foo.h -> forms/ui_foo.h
+QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:.ui=.h))))
+
+# Most files will depend on the forms and moc files as includes. Generate them
+# before anything else.
+$(QT_MOC): $(QT_FORMS_H)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_cribs_qt_OBJECTS) : | $(QT_MOC)
+
+#Generating these with a half-written protobuf header leads to wacky results.
+#This makes sure it's done.
+$(QT_MOC): $(PROTOBUF_H)
+$(QT_MOC_CPP): $(PROTOBUF_H)
+
+# cribs-qt binary #
+qt_cribs_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_cribs_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_cribs_qt_SOURCES = qt/cribs.cpp
+if TARGET_DARWIN
+  qt_cribs_qt_SOURCES += $(BITCOIN_MM)
+endif
+if TARGET_WINDOWS
+  qt_cribs_qt_SOURCES += $(BITCOIN_RC)
+endif
+qt_cribs_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+if ENABLE_WALLET
+qt_cribs_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
+endif
+if ENABLE_ZMQ
+qt_cribs_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+endif
+qt_cribs_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBBITCOIN_ZEROCOIN) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+  $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(SVG_LIBS) $(CHARTS_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
+  $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+qt_cribs_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_cribs_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+
+#locale/foo.ts -> locale/foo.qm
+QT_QM=$(QT_TS:.ts=.qm)
+
+SECONDARY: $(QT_QM)
+
+$(srcdir)/qt/cribsstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
+	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
+	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
+
+translate: $(srcdir)/qt/cribsstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/cribs.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/cribs_en.ts
+
+$(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
+	@test -f $(RCC)
+	@cp -f $< $(@D)/temp_$(<F)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name cribs_locale $(@D)/temp_$(<F) | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+	@rm $(@D)/temp_$(<F)
+
+$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(PROTOBUF_H)
+	@test -f $(RCC)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name cribs $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_cribs_locale.qrc
+
+CLEANFILES += $(CLEAN_QT)
+
+cribs_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_cribs_qt_OBJECTS) qt/cribs-qt$(EXEEXT) $(LIBBITCOINQT)
+
+cribs_qt : qt/cribs-qt$(EXEEXT)
+
+ui_%.h: %.ui
+	@test -f $(UIC)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(UIC) -o $@ $< || (echo "Error creating $@"; false)
+
+%.moc: %.cpp
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+moc_%.cpp: %.h
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+%.qm: %.ts
+	@test -f $(LRELEASE)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LRELEASE) -silent $< -qm $@

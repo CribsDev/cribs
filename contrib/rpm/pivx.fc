@@ -1,0 +1,8 @@
+/usr/bin/cribs-cli		--	gen_context(system_u:object_r:cribs_exec_t,s0)
+/usr/sbin/cribsd		--	gen_context(system_u:object_r:cribs_exec_t,s0)
+/usr/lib(64)?/cribs/cribsd		--	gen_context(system_u:object_r:cribs_exec_t,s0)
+
+/etc/cribs(/.*)?		gen_context(system_u:object_r:cribs_conf_t,s0)
+/var/lib/cribs(/.*)?		gen_context(system_u:object_r:cribs_var_lib_t,s0)
+
+(/var)?/run/cribsd(/.*)?   gen_context(system_u:object_r:cribs_var_run_t,s0)

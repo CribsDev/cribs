@@ -1,0 +1,3 @@
+usr/local/bin/cribsd usr/bin
+usr/local/bin/cribs-cli usr/bin
+debian/examples/cribs.conf etc/cribs

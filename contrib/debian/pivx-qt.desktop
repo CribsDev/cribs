@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=CRIBX Core
+Comment=CRIBX P2P Cryptocurrency
+Comment[fr]=CRIBX, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=CRIBX, eşten eşe kriptografik sanal para birimi
+Exec=cribs-qt %u
+Terminal=false
+Type=Application
+Icon=cribs128
+MimeType=x-scheme-handler/cribs;
+Categories=Office;Finance;
+StartupWMClass=Cribs-qt

@@ -1,0 +1,11 @@
+[Protocol]
+exec=cribs-qt '%u'
+protocol=cribs
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false

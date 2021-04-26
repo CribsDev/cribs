@@ -1,0 +1,6 @@
+usr/local/bin/cribs-qt usr/bin
+share/pixmaps/cribs32.xpm usr/share/pixmaps
+share/pixmaps/cribs16.xpm usr/share/pixmaps
+share/pixmaps/cribs128.png usr/share/pixmaps
+debian/cribs-qt.desktop usr/share/applications
+debian/cribs-qt.protocol usr/share/kde4/services/

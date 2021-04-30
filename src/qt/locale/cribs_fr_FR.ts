@@ -5960,7 +5960,7 @@ Portefeuille CRIBS Core</translation>
         <translation>Copyright (C) 2014-%i Les développeurs de DASH Core</translation>
     </message>
     <message>
-        <source>Copyright (C) 2015-%i The CRIBS Core Developers</source>
+        <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
         <translation>Copyright (C) 2015-%i Les développeurs de CRIBS Core</translation>
     </message>
     <message>

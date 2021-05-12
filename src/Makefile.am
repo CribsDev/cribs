@@ -25,7 +25,7 @@ BITCOIN_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BDB_CPPFLAGS) $(BOOST_CPPFLAG
 BITCOIN_INCLUDES += -I$(srcdir)/secp256k1/include
 BITCOIN_INCLUDES += $(UNIVALUE_CFLAGS)
 
-ARGON2D_INCLUDES=-I$(srcdir)/crypto/argon2/include
+ARGON2D_INCLUDES=-I$(srcdir)/crypto/phc-winner-argon2/include
 
 LIBBITCOIN_SERVER=libbitcoin_server.a
 LIBBITCOIN_COMMON=libbitcoin_common.a
@@ -360,16 +360,16 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/sph_types.h \
 ## --- argon2 hash --- ##
   crypto/argon2_best.c \
-  crypto/argon2/src/argon2.c \
-  crypto/argon2/include/argon2.h \
-  crypto/argon2/src/blake2/blake2b.c \
-  crypto/argon2/src/blake2/blake2.h \
-  crypto/argon2/src/core.c \
-  crypto/argon2/src/core.h \
-  crypto/argon2/src/encoding.c \
-  crypto/argon2/src/encoding.h \
-  crypto/argon2/src/thread.c \
-  crypto/argon2/src/thread.h
+  crypto/phc-winner-argon2/src/argon2.c \
+  crypto/phc-winner-argon2/include/argon2.h \
+  crypto/phc-winner-argon2/src/blake2/blake2b.c \
+  crypto/phc-winner-argon2/src/blake2/blake2.h \
+  crypto/phc-winner-argon2/src/core.c \
+  crypto/phc-winner-argon2/src/core.h \
+  crypto/phc-winner-argon2/src/encoding.c \
+  crypto/phc-winner-argon2/src/encoding.h \
+  crypto/phc-winner-argon2/src/thread.c \
+  crypto/phc-winner-argon2/src/thread.h
 
 # libzerocoin library
 libzerocoin_libbitcoin_zerocoin_a_CPPFLAGS = $(AM_CPPFLAGS) $(BOOST_CPPFLAGS)

@@ -353,7 +353,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int64_t nFe
     if (!pindexPrev) return;
 
     const bool isPoSActive = Params().GetConsensus().NetworkUpgradeActive(pindexPrev->nHeight + 1, Consensus::UPGRADE_POS);
-    if (!isPoSActive) return;
+    //if (!isPoSActive) return;
 
     bool hasPayment = true;
     CScript payee;

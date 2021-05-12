@@ -22,6 +22,7 @@
 #include "crypto/sph_keccak.h"
 #include "crypto/sph_skein.h"
 #include "crypto/sha512.h"
+#include "crypto/argon2/include/argon2.h"
 
 #include <iomanip>
 #include <openssl/sha.h>
@@ -412,6 +413,26 @@ inline uint256 HashQuark(const T1 pbegin, const T1 pend)
         sph_jh512_close(&ctx_jh, static_cast<void*>(&hash[8]));
     }
     return hash[8].trim256();
+}
+
+/* ----------- Argon2d4096 Hash ------------------------------------------------- */
+template <typename T1>
+inline uint256 HashArgon2d(const T1 pbegin, const T1 pend)
+{
+    const uint32_t t_cost = 1; // 1 iteration
+    const uint32_t m_cost = 4096; // use 4MB
+    const uint32_t parallelism = 1; // 1 thread, 2 lanes
+    static const unsigned char pblank[1] = {};
+
+    const size_t pwdlen = (pend - pbegin) * sizeof(pbegin[0]);
+
+    uint256 result;
+    const size_t hashlen = 32;
+
+    argon2d_hash_raw(t_cost, m_cost, parallelism, (pbegin == pend ? pblank : static_cast<const void*>(&pbegin[0])), pwdlen,
+                    (pbegin == pend ? pblank : static_cast<const void*>(&pbegin[0])), pwdlen, (char*)&result, hashlen);
+
+    return result;
 }
 
 void scrypt_hash(const char* pass, unsigned int pLen, const char* salt, unsigned int sLen, char* output, unsigned int N, unsigned int r, unsigned int p, unsigned int dkLen);

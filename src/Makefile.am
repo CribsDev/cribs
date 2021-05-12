@@ -25,6 +25,8 @@ BITCOIN_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BDB_CPPFLAGS) $(BOOST_CPPFLAG
 BITCOIN_INCLUDES += -I$(srcdir)/secp256k1/include
 BITCOIN_INCLUDES += $(UNIVALUE_CFLAGS)
 
+ARGON2D_INCLUDES=-I$(srcdir)/crypto/argon2/include
+
 LIBBITCOIN_SERVER=libbitcoin_server.a
 LIBBITCOIN_COMMON=libbitcoin_common.a
 LIBBITCOIN_CLI=libbitcoin_cli.a
@@ -318,7 +320,7 @@ libbitcoin_wallet_a_SOURCES = \
   $(BITCOIN_CORE_H)
 
 # crypto primitives library
-crypto_libbitcoin_crypto_a_CPPFLAGS = $(AM_CPPFLAGS) $(PIC_FLAGS)
+crypto_libbitcoin_crypto_a_CPPFLAGS = $(AM_CPPFLAGS) $(PIC_FLAGS) $(ARGON2D_INCLUDES)
 crypto_libbitcoin_crypto_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIC_FLAGS)
 crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/aes.cpp \
@@ -355,7 +357,19 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/sph_jh.h \
   crypto/sph_keccak.h \
   crypto/sph_skein.h \
-  crypto/sph_types.h
+  crypto/sph_types.h \
+## --- argon2 hash --- ##
+  crypto/argon2_best.c \
+  crypto/argon2/src/argon2.c \
+  crypto/argon2/include/argon2.h \
+  crypto/argon2/src/blake2/blake2b.c \
+  crypto/argon2/src/blake2/blake2.h \
+  crypto/argon2/src/core.c \
+  crypto/argon2/src/core.h \
+  crypto/argon2/src/encoding.c \
+  crypto/argon2/src/encoding.h \
+  crypto/argon2/src/thread.c \
+  crypto/argon2/src/thread.h
 
 # libzerocoin library
 libzerocoin_libbitcoin_zerocoin_a_CPPFLAGS = $(AM_CPPFLAGS) $(BOOST_CPPFLAGS)
@@ -560,7 +574,7 @@ endif
 
 libbitcoinconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
 libbitcoinconsensus_la_LIBADD = $(LIBSECP256K1)
-libbitcoinconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
+libbitcoinconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL $(ARGON2D_INCLUDES)
 libbitcoinconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 endif

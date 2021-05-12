@@ -3676,7 +3676,11 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
     //    std::string stringErr = strprintf("rejected block version %d at height %d", block.nVersion, nHeight);
     //    return state.Invalid(false, REJECT_OBSOLETE, "bad-version", stringErr);
     //}
-
+    if (block.nVersion < 8 && consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_NEW_ALGO))
+    {
+        std::string stringErr = strprintf("rejected block version %d at height %d", block.nVersion, nHeight);
+        return state.Invalid(false, REJECT_OBSOLETE, "bad-version", stringErr);
+    }
     return true;
 }
 

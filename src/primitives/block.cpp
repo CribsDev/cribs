@@ -15,7 +15,33 @@
 
 uint256 CBlockHeader::GetHash() const
 {
-    return HashQuark(BEGIN(nVersion), END(nNonce));
+if (nVersion >= 8) {
+#if defined(WORDS_BIGENDIAN)
+        uint8_t data[80];
+        WriteLE32(&data[0], nVersion);
+        memcpy(&data[4], hashPrevBlock.begin(), hashPrevBlock.size());
+        memcpy(&data[36], hashMerkleRoot.begin(), hashMerkleRoot.size());
+        WriteLE32(&data[68], nTime);
+        WriteLE32(&data[72], nBits);
+        WriteLE32(&data[76], nNonce);
+        return HashArgon2d(data, data + 80);
+#else // Can take shortcut for little endian
+        return HashArgon2d(BEGIN(nVersion), END(nNonce));
+#endif
+    } else {
+#if defined(WORDS_BIGENDIAN)
+        uint8_t data[80];
+        WriteLE32(&data[0], nVersion);
+        memcpy(&data[4], hashPrevBlock.begin(), hashPrevBlock.size());
+        memcpy(&data[36], hashMerkleRoot.begin(), hashMerkleRoot.size());
+        WriteLE32(&data[68], nTime);
+        WriteLE32(&data[72], nBits);
+        WriteLE32(&data[76], nNonce);
+        return HashQuark(data, data + 80);
+#else // Can take shortcut for little endian
+        return HashQuark(BEGIN(nVersion), END(nNonce));
+#endif
+    }
 }
 
 std::string CBlock::ToString() const

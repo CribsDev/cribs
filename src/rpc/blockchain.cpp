@@ -758,6 +758,9 @@ static UniValue SoftForkMajorityDesc(int version, CBlockIndex* pindex, const Con
     case 7:
         idx = Consensus::UPGRADE_V4_0;
         break;
+    case 8:
+        idx = Consensus::UPGRADE_NEW_ALGO;
+        break;    
     default:
         rv.push_back(Pair("status", false));
         return rv;

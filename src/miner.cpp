@@ -127,7 +127,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
     const Consensus::Params& consensus = Params().GetConsensus();
 
     //!> Block v7: Removes accumulator checkpoints
-    pblock->nVersion = CBlockHeader::CURRENT_VERSION;
+    pblock->nVersion = consensus.NetworkUpgradeActive(nHeight, Consensus::UPGRADE_NEW_ALGO) ? CBlockHeader::CURRENT_VERSION : 7;
     // -regtest only: allow overriding block.nVersion with
     // -blockversion=N to test forking scenarios
     if (Params().IsRegTestNet()) {

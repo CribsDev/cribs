@@ -50,6 +50,10 @@ const struct NUInfo NetworkUpgradeInfo[Consensus::MAX_NETWORK_UPGRADES] = {
                 /*.strInfo =*/ "new message sigs - start block v7 - time protocol - zc spend v4",
         },
         {
+                /*.strName =*/ "New algo",
+                /*.strInfo =*/ "new mining algo - start block v8",
+        },
+        {
                 /*.strName =*/ "v5_dummy",
                 /*.strInfo =*/ "Placeholder for future CRIBX version 5.0 upgrade",
         },

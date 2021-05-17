@@ -34,7 +34,15 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     uint256 PastDifficultyAveragePrev;
     const Consensus::Params& consensus = Params().GetConsensus();
 
-    if (BlockLastSolved == NULL || BlockLastSolved->nHeight == 0 || BlockLastSolved->nHeight < PastBlocksMin) {
+   if (pindexLast->nHeight >= 22999 && pindexLast->nHeight <= 23060) {
+      return consensus.powLimit.GetCompact();
+   }	
+  
+    //if (pindexLast->nHeight >23044 && pindexLast->nHeight <= 23060) {
+    //  return consensus.posLimitV2.GetCompact();
+    //}
+    
+   if (BlockLastSolved == NULL || BlockLastSolved->nHeight == 0 || BlockLastSolved->nHeight < PastBlocksMin) {
         return consensus.powLimit.GetCompact();
     }
 

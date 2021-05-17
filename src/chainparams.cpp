@@ -110,6 +110,7 @@ public:
 
         consensus.fPowAllowMinDifficultyBlocks           = false;
         consensus.powLimit                               = ~UINT256_ZERO >> 20;    // PIVX starting difficulty is 1 / 2^12
+        //consensus.powLimit2                              = ~UINT256_ZERO >> 1;    // fork to argon2d
         consensus.posLimitV1                             = ~UINT256_ZERO >> 24;
         consensus.posLimitV2                             = ~UINT256_ZERO >> 20;
         consensus.nBudgetCycleBlocks                     = 43200;                  // approx. 1 every 30 days
@@ -173,7 +174,7 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight     = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight          = 43250;
         consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight          = 43350;
-        consensus.vUpgrades[Consensus::UPGRADE_NEW_ALGO].nActivationHeight      = 23000;
+        consensus.vUpgrades[Consensus::UPGRADE_NEW_ALGO].nActivationHeight      = 23050;
         consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight      = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
 
         consensus.vUpgrades[Consensus::UPGRADE_ZC].hashActivationBlock          = uint256S("0x1");

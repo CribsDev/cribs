@@ -375,11 +375,12 @@ void ReadConfigFile(std::map<std::string, std::string>& mapSettingsRet,
            {
             std::string strHeader =
                 "# Cribs Configuration File!\n"
-                "addnode=45.61.139.142\n"
-                "addnode=45.76.172.146\n"
-                "addnode=66.42.99.229\n"
-                "addnode=45.63.79.57\n";
-				"addnode=161.97.101.101\n";
+                "addnode=185.197.249.201\n"
+                "addnode=75.119.149.78\n"
+                "addnode=161.97.101.101\n"
+                "addnode=45.61.137.140\n";
+				"addnode=168.100.10.18\n";
+                "addnode=45.61.137.166\n";         
 			fwrite(strHeader.c_str(), std::strlen(strHeader.c_str()), 1, configFile);
 			fclose(configFile);
 			streamConfig.open(GetConfigFile());
